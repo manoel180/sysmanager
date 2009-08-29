@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/08/2009 23:40:13 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="br.com.sysmanager.beans.Produto" table="produto">
+    <id name="codigo" type="java.lang.Integer">
+      <column name="codigo"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="br.com.sysmanager.beans.UnidadeMedida" fetch="join" name="unidadeMedida" lazy="false">
+      <column name="unidade_medida_codigo" not-null="true"/>
+    </many-to-one>
+    <property name="descricao" type="string">
+      <column length="100" name="descricao" not-null="true"/>
+    </property>
+    <property name="quantidadeEstoque" type="int">
+      <column name="quantidade_estoque" not-null="true"/>
+    </property>
+    <property name="preco" type="double">
+      <column name="preco" not-null="true" precision="8"/>
+    </property>
+  </class>
+</hibernate-mapping>
