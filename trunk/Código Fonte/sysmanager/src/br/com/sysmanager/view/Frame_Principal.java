@@ -21,7 +21,7 @@ public class Frame_Principal extends javax.swing.JFrame {
 
     /** Creates new form Frame_Principal */
     public Frame_Principal() {
-        initComponents();
+        initComponents();        
     }
 
     /** This method is called from within the constructor to
@@ -34,6 +34,9 @@ public class Frame_Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jXStatusBar1 = new org.jdesktop.swingx.JXStatusBar();
+        jXTaskPaneContainer1 = new org.jdesktop.swingx.JXTaskPaneContainer();
+        jXTaskPane1 = new org.jdesktop.swingx.JXTaskPane();
         menuBar = new javax.swing.JMenuBar();
         cadastrosMenu = new javax.swing.JMenu();
         produtosMenuItem = new javax.swing.JMenuItem();
@@ -41,6 +44,8 @@ public class Frame_Principal extends javax.swing.JFrame {
         sairMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jXTaskPaneContainer1.add(jXTaskPane1);
 
         cadastrosMenu.setText("Cadastros");
 
@@ -69,14 +74,26 @@ public class Frame_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jXTaskPaneContainer1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jXStatusBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jXTaskPaneContainer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jXStatusBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-780)/2, (screenSize.height-580)/2, 780, 580);
     }// </editor-fold>//GEN-END:initComponents
 
     private void sairMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairMenuItemActionPerformed
@@ -96,6 +113,9 @@ public class Frame_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu cadastrosMenu;
     public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JSeparator jSeparator1;
+    private org.jdesktop.swingx.JXStatusBar jXStatusBar1;
+    private org.jdesktop.swingx.JXTaskPane jXTaskPane1;
+    private org.jdesktop.swingx.JXTaskPaneContainer jXTaskPaneContainer1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem produtosMenuItem;
     private javax.swing.JMenuItem sairMenuItem;
