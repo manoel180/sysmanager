@@ -6,6 +6,7 @@
 package br.com.sysmanager.connection;
 
 
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -22,8 +23,11 @@ public class HibernateUtil {
     static {
         try {
             session = new Configuration().configure("br/com/sysmanager/connection/hibernate.cfg.xml").buildSessionFactory();
+            JOptionPane.showMessageDialog(null, session);
         } catch (Throwable ex) {
+            JOptionPane.showMessageDialog(null, "Falha ao conectar com o Banco de Dados");
             throw new ExceptionInInitializerError(ex);
+
         }
     }
 

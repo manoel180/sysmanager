@@ -3,9 +3,9 @@
  * and open the template in the editor.
  */
 
-package br.com.sysmanager.model;
+package br.com.sysmanager.dao;
 
-import br.com.sysmanager.beans.Produto;
+import br.com.sysmanager.model.*;
 import br.com.sysmanager.connection.HibernateUtil;
 import br.com.sysmanager.services.Funcoes;
 import java.util.List;

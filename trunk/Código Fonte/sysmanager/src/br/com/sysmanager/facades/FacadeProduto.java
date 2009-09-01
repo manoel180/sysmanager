@@ -5,8 +5,10 @@
 
 package br.com.sysmanager.facades;
 
-import br.com.sysmanager.beans.Produto;
-import br.com.sysmanager.model.ProdutoDao;
+
+import br.com.sysmanager.dao.ProdutoDao;
+
+import br.com.sysmanager.model.Produto;
 import br.com.sysmanager.services.Funcoes;
 import java.util.List;
 import javax.swing.JTable;
@@ -44,10 +46,10 @@ public class FacadeProduto {
 
             Funcoes.getModel(jTable).addRow(new String[]{
 
-                String.valueOf(produto.getCodigo()),
+                String.valueOf(produto.getId()),
                 produto.getDescricao(),
                 String.valueOf(produto.getQuantidadeEstoque()),
-                String.format("%.2f", produto.getPreco()),
+                String.format("%.2f", produto.getPrecoAtacado()),
                 produto.getUnidadeMedida().getSigla()
 
             });

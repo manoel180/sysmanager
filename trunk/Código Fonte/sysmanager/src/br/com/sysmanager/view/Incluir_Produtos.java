@@ -11,9 +11,9 @@
 
 package br.com.sysmanager.view;
 
-import br.com.sysmanager.beans.UnidadeMedida;
 import br.com.sysmanager.facades.FacadeProduto;
 import br.com.sysmanager.facades.FacadeUnidadeMedida;
+import br.com.sysmanager.model.UnidadeMedida;
 
 /**
  *
@@ -180,8 +180,8 @@ public class Incluir_Produtos extends javax.swing.JInternalFrame {
         facadeUnidadeMedida.getUnidadeMedida().setCodigo(1);
 
         facadeProduto.getProduto().setDescricao("produto 01");
-        facadeProduto.getProduto().setPreco(12.50);
-        facadeProduto.getProduto().setQuantidadeEstoque(50);
+  //      facadeProduto.getProduto().setPrecoAtacado(12.50);
+//        facadeProduto.getProduto().setQuantidadeEstoque(50);
 
         facadeProduto.getProduto().setUnidadeMedida(facadeUnidadeMedida.getUnidadeMedida());
         
