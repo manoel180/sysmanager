@@ -5,8 +5,9 @@
 
 package br.com.sysmanager.facades;
 
-import br.com.sysmanager.beans.UnidadeMedida;
-import br.com.sysmanager.model.UnidadeMedidaDao;
+
+import br.com.sysmanager.dao.UnidadeMedidaDao;
+import br.com.sysmanager.model.UnidadeMedida;
 import java.util.List;
 
 /**

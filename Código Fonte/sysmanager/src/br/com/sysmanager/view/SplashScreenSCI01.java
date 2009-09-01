@@ -1,5 +1,6 @@
 package br.com.sysmanager.view;
 
+import br.com.sysmanager.connection.HibernateUtil;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,12 +31,12 @@ public class SplashScreenSCI01 extends JWindow {
         int y = (screen.height - height) / 2;
         setBounds(x, y, width, height);
         label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sysmanager/icons/Logo_SysManager.jpg")));
-        JLabel copyrt = new JLabel("CopyLeft 2009, Manoel & Osenias",
+        JLabel copyrt = new JLabel("CopyRight 2009, Manoel & Osenias",
                 JLabel.CENTER);
         copyrt.setFont(new Font("Sans-Serif", Font.BOLD, 12));
         content.add(label, BorderLayout.CENTER);
         content.add(copyrt, BorderLayout.SOUTH);
-        Color oraRed = new Color(156, 20, 20, 255);
+        Color oraRed = new Color(0, 255, 0, 255);
         content.setBorder(BorderFactory.createLineBorder(oraRed, 10));
 
         // Display it
@@ -45,6 +46,8 @@ public class SplashScreenSCI01 extends JWindow {
         try {
             Thread.sleep(duracao);
             new Frame_Principal().show();
+            HibernateUtil hu = new HibernateUtil();
+            hu.getSession();
 
         } catch (Exception e) {
         }
