@@ -1,24 +1,23 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 31/08/2009 22:11:07 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="br.com.sysmanager.model.Cidade" table="cidade" catalog="sysmanager">
-        <id name="idCidade" type="java.lang.Integer">
-            <column name="idCidade" />
-            <generator class="identity" />
-        </id>
-        <property name="cidade" type="string">
-            <column name="Cidade" length="45" not-null="true" />
-        </property>
-        <property name="idEstado" type="int">
-            <column name="idEstado" not-null="true" />
-        </property>
-        <set name="bairros" inverse="true">
-            <key>
-                <column name="Cidade_idCidade" not-null="true" />
-            </key>
-            <one-to-many class="br.com.sysmanager.model.Bairro" />
-        </set>
-    </class>
+  <class catalog="sysmanager" name="br.com.sysmanager.model.Cidade" table="cidade">
+    <id name="idCidade" type="java.lang.Integer">
+      <column name="idCidade"/>
+      <generator class="identity"/>
+    </id>
+    <property name="cidade" type="string">
+      <column length="45" name="Cidade" not-null="true"/>
+    </property>
+    <property name="idEstado" type="int">
+      <column name="idEstado" not-null="true"/>
+    </property>
+    <set inverse="true" name="bairros">
+      <key>
+        <column name="Cidade_idCidade" not-null="true"/>
+      </key>
+      <one-to-many class="br.com.sysmanager.model.Bairro"/>
+    </set>
+  </class>
 </hibernate-mapping>

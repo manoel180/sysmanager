@@ -45,9 +45,10 @@ public class SplashScreenSCI01 extends JWindow {
         // Wait a little while, maybe while loading resources
         try {
             Thread.sleep(duracao);
-            new Frame_Principal().show();
+            
             HibernateUtil hu = new HibernateUtil();
             hu.getSession();
+            new Frame_Principal().show();
 
         } catch (Exception e) {
         }
