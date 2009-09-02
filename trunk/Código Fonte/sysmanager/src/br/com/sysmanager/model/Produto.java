@@ -20,6 +20,7 @@ public class Produto  implements java.io.Serializable {
      private BigDecimal quantidadeMinimo;
 
     public Produto() {
+    this.setQuantidadeEstoque(BigDecimal.valueOf(10));
     }
 
 	

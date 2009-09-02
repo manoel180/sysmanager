@@ -25,7 +25,7 @@ public class HibernateUtil {
             session = new Configuration().configure("br/com/sysmanager/connection/hibernate.cfg.xml").buildSessionFactory();
             JOptionPane.showMessageDialog(null, session);
         } catch (Throwable ex) {
-            JOptionPane.showMessageDialog(null, "Falha ao conectar com o Banco de Dados");
+            JOptionPane.showMessageDialog(null, "ERRO","Falha ao conectar com o Banco de Dados",0);
             throw new ExceptionInInitializerError(ex);
 
         }

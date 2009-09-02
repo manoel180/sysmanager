@@ -1,21 +1,20 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 31/08/2009 22:11:07 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="br.com.sysmanager.model.Grupos" table="grupos" catalog="sysmanager">
-        <id name="codigo" type="java.lang.Integer">
-            <column name="codigo" />
-            <generator class="identity" />
-        </id>
-        <property name="descricao" type="string">
-            <column name="descricao" length="45" not-null="true" unique="true" />
-        </property>
-        <set name="produtos" inverse="true">
-            <key>
-                <column name="Grupos_codigo" not-null="true" />
-            </key>
-            <one-to-many class="br.com.sysmanager.model.Produto" />
-        </set>
-    </class>
+  <class catalog="sysmanager" name="br.com.sysmanager.model.Grupos" table="grupos">
+    <id name="codigo" type="java.lang.Integer">
+      <column name="codigo"/>
+      <generator class="identity"/>
+    </id>
+    <property name="descricao" type="string">
+      <column length="45" name="descricao" not-null="true" unique="true"/>
+    </property>
+    <set inverse="true" name="produtos">
+      <key>
+        <column name="Grupos_codigo" not-null="true"/>
+      </key>
+      <one-to-many class="br.com.sysmanager.model.Produto"/>
+    </set>
+  </class>
 </hibernate-mapping>

@@ -1,18 +1,17 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 31/08/2009 22:11:07 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="br.com.sysmanager.model.Bairro" table="bairro" catalog="sysmanager">
-        <id name="idBairro" type="int">
-            <column name="idBairro" />
-            <generator class="assigned" />
-        </id>
-        <many-to-one name="cidade" class="br.com.sysmanager.model.Cidade" fetch="select">
-            <column name="Cidade_idCidade" not-null="true" />
-        </many-to-one>
-        <property name="bairro" type="string">
-            <column name="Bairro" length="45" not-null="true" />
-        </property>
-    </class>
+  <class catalog="sysmanager" name="br.com.sysmanager.model.Bairro" table="bairro">
+    <id name="idBairro" type="int">
+      <column name="idBairro"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="br.com.sysmanager.model.Cidade" fetch="select" name="cidade">
+      <column name="Cidade_idCidade" not-null="true"/>
+    </many-to-one>
+    <property name="bairro" type="string">
+      <column length="45" name="Bairro" not-null="true"/>
+    </property>
+  </class>
 </hibernate-mapping>

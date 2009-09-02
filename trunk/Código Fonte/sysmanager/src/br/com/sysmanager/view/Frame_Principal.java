@@ -35,11 +35,11 @@ public class Frame_Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jXStatusBar1 = new org.jdesktop.swingx.JXStatusBar();
         jXTaskPaneContainer1 = new org.jdesktop.swingx.JXTaskPaneContainer();
         jXTaskPane1 = new org.jdesktop.swingx.JXTaskPane();
         jXTaskPane2 = new org.jdesktop.swingx.JXTaskPane();
         jXTaskPane3 = new org.jdesktop.swingx.JXTaskPane();
-        jXStatusBar1 = new org.jdesktop.swingx.JXStatusBar();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -60,15 +60,45 @@ public class Frame_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        javax.swing.GroupLayout jXStatusBar1Layout = new javax.swing.GroupLayout(jXStatusBar1);
+        jXStatusBar1.setLayout(jXStatusBar1Layout);
+        jXStatusBar1Layout.setHorizontalGroup(
+            jXStatusBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 735, Short.MAX_VALUE)
+        );
+        jXStatusBar1Layout.setVerticalGroup(
+            jXStatusBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 23, Short.MAX_VALUE)
+        );
+
+        jXStatusBar1.setBounds(-180, 450, 762, 31);
+        desktopPane.add(jXStatusBar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         jXTaskPane1.setName("Cadastros"); // NOI18N
         jXTaskPane1.setTitle("Cadastros");
-        jXTaskPaneContainer1.add(jXTaskPane1);
 
         jXTaskPane2.setTitle("Consultas");
-        jXTaskPaneContainer1.add(jXTaskPane2);
 
         jXTaskPane3.setTitle("Relatórios");
-        jXTaskPaneContainer1.add(jXTaskPane3);
+
+        javax.swing.GroupLayout jXTaskPaneContainer1Layout = new javax.swing.GroupLayout(jXTaskPaneContainer1);
+        jXTaskPaneContainer1.setLayout(jXTaskPaneContainer1Layout);
+        jXTaskPaneContainer1Layout.setHorizontalGroup(
+            jXTaskPaneContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jXTaskPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+            .addComponent(jXTaskPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+            .addComponent(jXTaskPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+        );
+        jXTaskPaneContainer1Layout.setVerticalGroup(
+            jXTaskPaneContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jXTaskPaneContainer1Layout.createSequentialGroup()
+                .addComponent(jXTaskPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(jXTaskPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(jXTaskPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(279, 279, 279))
+        );
 
         jToolBar1.setRollover(true);
 
@@ -91,16 +121,29 @@ public class Frame_Principal extends javax.swing.JFrame {
         jToolBar1.add(jButton3);
 
         jButton4.setText("jButton4");
+        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton4);
 
-        btn_Sair.setText("Sair");
+        btn_Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sysmanager/icons/exit.png"))); // NOI18N
         btn_Sair.setToolTipText("Encerra o SysManager");
+        btn_Sair.setBorder(null);
         btn_Sair.setFocusable(false);
         btn_Sair.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_Sair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_SairMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_SairMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_SairMousePressed(evt);
+            }
+        });
         btn_Sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_SairActionPerformed(evt);
@@ -160,23 +203,21 @@ public class Frame_Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jXTaskPaneContainer1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jXTaskPaneContainer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
-            .addComponent(jXStatusBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jXTaskPaneContainer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jXStatusBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jXTaskPaneContainer1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                    .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -205,6 +246,22 @@ public class Frame_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btn_SairActionPerformed
+
+    private void btn_SairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SairMouseExited
+        btn_Sair.setBorder(null);
+    }//GEN-LAST:event_btn_SairMouseExited
+
+    private void btn_SairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SairMouseEntered
+        btn_Sair.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+    }//GEN-LAST:event_btn_SairMouseEntered
+
+    private void btn_SairMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SairMousePressed
+
+        btn_Sair.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+    }//GEN-LAST:event_btn_SairMousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Sair;
     private javax.swing.JMenu cadastrosMenu;
