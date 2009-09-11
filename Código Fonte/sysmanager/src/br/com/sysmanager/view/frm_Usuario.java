@@ -8,23 +8,42 @@
  *
  * Created on 31/08/2009, 23:37:40
  */
-
 package br.com.sysmanager.view;
+
+import br.com.sysmanager.dao.IUsuarioDao;
+import br.com.sysmanager.dao.UsuarioDao;
+import br.com.sysmanager.facades.FacadeUsuario;
+import br.com.sysmanager.model.Usuario;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author manoel.neto
  */
 public class frm_Usuario extends javax.swing.JFrame {
-String titulo = "Cadastro de Usuário";
+
+    private Usuario usuario = new Usuario();
+    private FacadeUsuario facadeUsuario = new FacadeUsuario();
 
     /** Creates new form frm_Usuario */
     public frm_Usuario() {
         initComponents();
+        facadeUsuario.preencherTableUsuarios(1, "", null, null, tbl_Usuario);
     }
-private void sair(){
-    System.exit(0);
-}
+
+    @SuppressWarnings("deprecation")
+    private void sair() {
+        this.hide();
+    }
+
+    private void PreecherUsuario() {
+        usuario.setCodigo(Integer.parseInt(txt_codigo.getText()));
+        usuario.setLogin(txt_login.getText());
+        usuario.setSenha(pwd_Senha.getText());
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -33,23 +52,56 @@ private void sair(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGrp_Busca = new javax.swing.ButtonGroup();
+        ppmnu_aux = new javax.swing.JPopupMenu();
+        mnitem_alterar = new javax.swing.JMenuItem();
+        mnitem_excluir = new javax.swing.JMenuItem();
+        btnGrp_TipoUsuario = new javax.swing.ButtonGroup();
         ttl_Titulo = new org.jdesktop.swingx.JXTitledPanel();
         btn_Cancelar = new javax.swing.JButton();
-        btn_Excluir = new javax.swing.JButton();
-        btn_Salvar = new javax.swing.JButton();
         tab_Usuario = new javax.swing.JTabbedPane();
         pnl_Consulta = new org.jdesktop.swingx.JXPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_Usuario = new javax.swing.JTable();
+        pnl_busca = new javax.swing.JPanel();
         lbl_Login1 = new javax.swing.JLabel();
-        pnl_Consulta1 = new org.jdesktop.swingx.JXPanel();
+        txf_Login = new javax.swing.JTextField();
+        lbl_Nome = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        pnl_tipobusca = new javax.swing.JPanel();
+        rbtn_antes = new javax.swing.JRadioButton();
+        rbtn_qualquerparte = new javax.swing.JRadioButton();
+        rbtn_final = new javax.swing.JRadioButton();
+        btn_Pesquisa = new javax.swing.JButton();
+        pnl_Cadastro = new org.jdesktop.swingx.JXPanel();
         lbl_Senha = new javax.swing.JLabel();
         pwd_Senha = new javax.swing.JPasswordField();
-        txt_login = new javax.swing.JTextField();
+        txt_codigo = new javax.swing.JTextField();
         lbl_Login = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        ckb_Administrador = new javax.swing.JCheckBox();
+        ckb_AuxAdministrativo = new javax.swing.JCheckBox();
+        ckb_Vendedor = new javax.swing.JCheckBox();
+        btn_Salvar = new javax.swing.JButton();
+        lbl_Codigo = new javax.swing.JLabel();
+        txt_login = new javax.swing.JTextField();
+
+        mnitem_alterar.setText("Alterar");
+        mnitem_alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnitem_alterarActionPerformed(evt);
+            }
+        });
+        ppmnu_aux.add(mnitem_alterar);
+
+        mnitem_excluir.setText("Excluir");
+        ppmnu_aux.add(mnitem_excluir);
 
         setTitle("Cadastro de Usuários");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        ttl_Titulo.setTitle(titulo);
-        ttl_Titulo.setTitleFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ttl_Titulo.setTitle(" CADASTRO USUÁRIO");
+        ttl_Titulo.setTitleFont(new java.awt.Font("Tahoma", 0, 18));
 
         btn_Cancelar.setText("Cancelar");
         btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +110,192 @@ private void sair(){
             }
         });
 
-        btn_Excluir.setText("Excluir");
+        tbl_Usuario.setAutoCreateRowSorter(true);
+        tbl_Usuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Codigo", "Login", "Nome", "Senha", "Perfil"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_Usuario.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbl_Usuario.setComponentPopupMenu(ppmnu_aux);
+        tbl_Usuario.setFocusable(false);
+        tbl_Usuario.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tbl_Usuario);
+        tbl_Usuario.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbl_Usuario.getColumnModel().getColumn(0).setResizable(false);
+        tbl_Usuario.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tbl_Usuario.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tbl_Usuario.getColumnModel().getColumn(2).setPreferredWidth(300);
+        tbl_Usuario.getColumnModel().getColumn(3).setResizable(false);
+        tbl_Usuario.getColumnModel().getColumn(4).setPreferredWidth(200);
+        //Remove as Colunas da visão
+        tbl_Usuario.getColumnModel().removeColumn( tbl_Usuario.getColumnModel().getColumn(3));//Remove a Coluna Senha
+        tbl_Usuario.getColumnModel().removeColumn( tbl_Usuario.getColumnModel().getColumn(0));//Remove a Coluna Codigo
+
+        pnl_busca.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa"));
+
+        lbl_Login1.setText("Login");
+
+        lbl_Nome.setText("Nome");
+
+        pnl_tipobusca.setBorder(javax.swing.BorderFactory.createTitledBorder("Opções de Busca Avançada"));
+
+        btnGrp_Busca.add(rbtn_antes);
+        rbtn_antes.setSelected(true);
+        rbtn_antes.setText("Começo");
+
+        btnGrp_Busca.add(rbtn_qualquerparte);
+        rbtn_qualquerparte.setText("Qualquer parte");
+
+        btnGrp_Busca.add(rbtn_final);
+        rbtn_final.setText("Final");
+
+        javax.swing.GroupLayout pnl_tipobuscaLayout = new javax.swing.GroupLayout(pnl_tipobusca);
+        pnl_tipobusca.setLayout(pnl_tipobuscaLayout);
+        pnl_tipobuscaLayout.setHorizontalGroup(
+            pnl_tipobuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_tipobuscaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbtn_antes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbtn_qualquerparte)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbtn_final)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnl_tipobuscaLayout.setVerticalGroup(
+            pnl_tipobuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_tipobuscaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_tipobuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtn_antes)
+                    .addComponent(rbtn_qualquerparte)
+                    .addComponent(rbtn_final))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btn_Pesquisa.setText("Pesquisar");
+        btn_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PesquisaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnl_buscaLayout = new javax.swing.GroupLayout(pnl_busca);
+        pnl_busca.setLayout(pnl_buscaLayout);
+        pnl_buscaLayout.setHorizontalGroup(
+            pnl_buscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_buscaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_buscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbl_Nome)
+                    .addComponent(lbl_Login1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_buscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField1)
+                    .addComponent(txf_Login, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(pnl_tipobusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_Pesquisa)
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        pnl_buscaLayout.setVerticalGroup(
+            pnl_buscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_buscaLayout.createSequentialGroup()
+                .addGroup(pnl_buscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_buscaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnl_buscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_Login1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txf_Login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnl_buscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_Nome)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pnl_tipobusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnl_buscaLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(btn_Pesquisa)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnl_ConsultaLayout = new javax.swing.GroupLayout(pnl_Consulta);
+        pnl_Consulta.setLayout(pnl_ConsultaLayout);
+        pnl_ConsultaLayout.setHorizontalGroup(
+            pnl_ConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_ConsultaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_ConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
+                    .addComponent(pnl_busca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnl_ConsultaLayout.setVerticalGroup(
+            pnl_ConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_ConsultaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnl_busca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tab_Usuario.addTab("Consulta", null, pnl_Consulta, "Consulta Informações do usuário");
+
+        lbl_Senha.setText("Senha");
+
+        txt_codigo.setBackground(new java.awt.Color(255, 255, 153));
+        txt_codigo.setEditable(false);
+        txt_codigo.setDisabledTextColor(new java.awt.Color(255, 255, 153));
+
+        lbl_Login.setText("Login");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Perfil do Usuário"));
+
+        btnGrp_TipoUsuario.add(ckb_Administrador);
+        ckb_Administrador.setText("Administrador");
+
+        btnGrp_TipoUsuario.add(ckb_AuxAdministrativo);
+        ckb_AuxAdministrativo.setText("Aux. Administrativo");
+
+        btnGrp_TipoUsuario.add(ckb_Vendedor);
+        ckb_Vendedor.setText("Vendedor");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ckb_Administrador)
+                    .addComponent(ckb_AuxAdministrativo)
+                    .addComponent(ckb_Vendedor))
+                .addContainerGap(128, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ckb_Administrador)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ckb_AuxAdministrativo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ckb_Vendedor)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
 
         btn_Salvar.setText("Salvar");
         btn_Salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -67,138 +304,167 @@ private void sair(){
             }
         });
 
-        lbl_Login1.setText("Login");
+        lbl_Codigo.setText("Código");
 
-        javax.swing.GroupLayout pnl_ConsultaLayout = new javax.swing.GroupLayout(pnl_Consulta);
-        pnl_Consulta.setLayout(pnl_ConsultaLayout);
-        pnl_ConsultaLayout.setHorizontalGroup(
-            pnl_ConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_ConsultaLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnl_CadastroLayout = new javax.swing.GroupLayout(pnl_Cadastro);
+        pnl_Cadastro.setLayout(pnl_CadastroLayout);
+        pnl_CadastroLayout.setHorizontalGroup(
+            pnl_CadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_CadastroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbl_Login1)
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addGroup(pnl_CadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_CadastroLayout.createSequentialGroup()
+                        .addGroup(pnl_CadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbl_Login)
+                            .addComponent(lbl_Senha)
+                            .addComponent(lbl_Codigo)
+                            .addComponent(txt_login, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                            .addComponent(pwd_Senha)
+                            .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_CadastroLayout.createSequentialGroup()
+                        .addComponent(btn_Salvar)
+                        .addContainerGap())))
         );
-        pnl_ConsultaLayout.setVerticalGroup(
-            pnl_ConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_ConsultaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_Login1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
-        );
-
-        tab_Usuario.addTab("Consulta", null, pnl_Consulta, "Consulta Informações do usuário");
-
-        lbl_Senha.setText("Senha");
-
-        pwd_Senha.setText("teste");
-        pwd_Senha.setSelectionStart(5);
-
-        lbl_Login.setText("Login");
-
-        javax.swing.GroupLayout pnl_Consulta1Layout = new javax.swing.GroupLayout(pnl_Consulta1);
-        pnl_Consulta1.setLayout(pnl_Consulta1Layout);
-        pnl_Consulta1Layout.setHorizontalGroup(
-            pnl_Consulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_Consulta1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnl_Consulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_Consulta1Layout.createSequentialGroup()
-                        .addComponent(lbl_Login)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_Consulta1Layout.createSequentialGroup()
-                        .addComponent(lbl_Senha)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_Consulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(pwd_Senha, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txt_login, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(237, Short.MAX_VALUE))
-        );
-        pnl_Consulta1Layout.setVerticalGroup(
-            pnl_Consulta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_Consulta1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lbl_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pwd_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+        pnl_CadastroLayout.setVerticalGroup(
+            pnl_CadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_CadastroLayout.createSequentialGroup()
+                .addGroup(pnl_CadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_CadastroLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(237, 237, 237)
+                        .addComponent(btn_Salvar))
+                    .addGroup(pnl_CadastroLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(lbl_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(lbl_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbl_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pwd_Senha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tab_Usuario.addTab("Cadastro", null, pnl_Consulta1, "Cadastro, Alteração e Excluão de Usuários");
+        tab_Usuario.addTab("Cadastro", null, pnl_Cadastro, "Cadastro, Alteração e Excluão de Usuários");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ttl_Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(251, Short.MAX_VALUE)
-                .addComponent(btn_Salvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_Excluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_Cancelar)
-                .addContainerGap())
+            .addComponent(ttl_Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tab_Usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                .addComponent(tab_Usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(699, Short.MAX_VALUE)
+                .addComponent(btn_Cancelar)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(ttl_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tab_Usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Cancelar)
-                    .addComponent(btn_Excluir)
-                    .addComponent(btn_Salvar))
+                .addComponent(tab_Usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_Cancelar)
                 .addContainerGap())
         );
 
+        pack();
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-482)/2, (screenSize.height-323)/2, 482, 323);
+        java.awt.Dimension dialogSize = getSize();
+        setLocation((screenSize.width-dialogSize.width)/2,(screenSize.height-dialogSize.height)/2);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalvarActionPerformed
         // TODO add your handling code here:
-        sair();
+        PreecherUsuario();
+        IUsuarioDao usuarioDao = new UsuarioDao();
+        usuarioDao.salvar(usuario);
     }//GEN-LAST:event_btn_SalvarActionPerformed
+    private void btn_ExclurActionPerformed(java.awt.event.ActionEvent evt) {
+        PreecherUsuario();
+        IUsuarioDao usuarioDao = new UsuarioDao();
+
+    }
 
     private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
         // TODO add your handling code here:
         sair();
     }//GEN-LAST:event_btn_CancelarActionPerformed
 
+    private void btn_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PesquisaActionPerformed
+        try {
+            //Executar comandos do Windows
+            Runtime.getRuntime().exec("notepad.exe");
+        } catch (IOException ex) {
+            Logger.getLogger(frm_Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_PesquisaActionPerformed
+
+    private void mnitem_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnitem_alterarActionPerformed
+        // TODO add your handling code here:
+        txt_codigo.setText(tbl_Usuario.getModel().getValueAt(tbl_Usuario.getSelectedRow(), 0).toString());
+        txt_login.setText(tbl_Usuario.getModel().getValueAt(tbl_Usuario.getSelectedRow(), 1).toString());
+        pwd_Senha.setText(tbl_Usuario.getModel().getValueAt(tbl_Usuario.getSelectedRow(), 3).toString());
+
+        tab_Usuario.setSelectedIndex(1);
+    }//GEN-LAST:event_mnitem_alterarActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frm_Usuario().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btnGrp_Busca;
+    private javax.swing.ButtonGroup btnGrp_TipoUsuario;
     private javax.swing.JButton btn_Cancelar;
-    private javax.swing.JButton btn_Excluir;
+    private javax.swing.JButton btn_Pesquisa;
     private javax.swing.JButton btn_Salvar;
+    private javax.swing.JCheckBox ckb_Administrador;
+    private javax.swing.JCheckBox ckb_AuxAdministrativo;
+    private javax.swing.JCheckBox ckb_Vendedor;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbl_Codigo;
     private javax.swing.JLabel lbl_Login;
     private javax.swing.JLabel lbl_Login1;
+    private javax.swing.JLabel lbl_Nome;
     private javax.swing.JLabel lbl_Senha;
+    private javax.swing.JMenuItem mnitem_alterar;
+    private javax.swing.JMenuItem mnitem_excluir;
+    private org.jdesktop.swingx.JXPanel pnl_Cadastro;
     private org.jdesktop.swingx.JXPanel pnl_Consulta;
-    private org.jdesktop.swingx.JXPanel pnl_Consulta1;
+    private javax.swing.JPanel pnl_busca;
+    private javax.swing.JPanel pnl_tipobusca;
+    private javax.swing.JPopupMenu ppmnu_aux;
     private javax.swing.JPasswordField pwd_Senha;
+    private javax.swing.JRadioButton rbtn_antes;
+    private javax.swing.JRadioButton rbtn_final;
+    private javax.swing.JRadioButton rbtn_qualquerparte;
     private javax.swing.JTabbedPane tab_Usuario;
+    private javax.swing.JTable tbl_Usuario;
     private org.jdesktop.swingx.JXTitledPanel ttl_Titulo;
+    private javax.swing.JTextField txf_Login;
+    private javax.swing.JTextField txt_codigo;
     private javax.swing.JTextField txt_login;
     // End of variables declaration//GEN-END:variables
-
 }
