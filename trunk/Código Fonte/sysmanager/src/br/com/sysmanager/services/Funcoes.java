@@ -7,6 +7,7 @@ package br.com.sysmanager.services;
 
 import java.awt.Component;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -23,6 +24,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Osenias
  */
 public class Funcoes {
+
+
+    public static int getCodigo(String texto){
+        int iCodigo = Integer.parseInt(texto.substring(texto.indexOf("(") +1, texto.indexOf(")")));
+        return iCodigo;
+    }
 
     public static void limpaComboBox(JComboBox jComboBox){
 
@@ -76,6 +83,58 @@ public class Funcoes {
                     if (sAux.equals("jlblCodigo"))
                         ((JLabel)c).setText("");
                 }
+            }
+        }
+    }
+
+
+    public static void desabilitaCampos(JPanel panel) {
+
+        Component c;
+
+        for (int i = 0; i < panel.getComponents().length; i++){
+            c = panel.getComponent(i);
+
+            if (c instanceof JTextField){
+                ((JTextField)c).setEditable(false);
+            } else if (c instanceof JFormattedTextField){
+                ((JFormattedTextField)c).setEditable(false);
+            } else if (c instanceof JTextArea){
+                ((JTextArea)c).setEditable(false);
+            } else if (c instanceof JPasswordField){
+                ((JPasswordField)c).setEditable(false);
+            } else if (c instanceof JComboBox) {
+                ((JComboBox)c).setEnabled(false);
+            } else if(c instanceof JTable){
+                ((JTable)c).setEnabled(false);
+            } else if(c instanceof JButton){
+                ((JButton)c).setEnabled(false);
+            }
+        }
+    }
+
+
+    public static void habilitaCampos(JPanel panel) {
+
+        Component c;
+
+        for (int i = 0; i < panel.getComponents().length; i++){
+            c = panel.getComponent(i);
+
+            if (c instanceof JTextField){
+                ((JTextField)c).setEditable(true);
+            } else if (c instanceof JFormattedTextField){
+                ((JFormattedTextField)c).setEditable(true);
+            } else if (c instanceof JTextArea){
+                ((JTextArea)c).setEditable(true);
+            } else if (c instanceof JPasswordField){
+                ((JPasswordField)c).setEditable(true);
+            } else if (c instanceof JComboBox) {
+                ((JComboBox)c).setEnabled(true);
+            } else if(c instanceof JTable){
+                ((JTable)c).setEnabled(true);
+            } else if(c instanceof JButton){
+                ((JButton)c).setEnabled(true);
             }
         }
     }
