@@ -97,10 +97,10 @@ public class frm_Usuario extends javax.swing.JFrame {
         mnitem_excluir.setText("Excluir");
         ppmnu_aux.add(mnitem_excluir);
 
-        setTitle("Cadastro de Usu√°rios");
+        setTitle("Cadastro de Usu·rios");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        ttl_Titulo.setTitle(" CADASTRO USU√ÅRIO");
+        ttl_Titulo.setTitle(" CADASTRO USU¡RIO");
         ttl_Titulo.setTitleFont(new java.awt.Font("Tahoma", 0, 18));
 
         btn_Cancelar.setText("Cancelar");
@@ -139,7 +139,7 @@ public class frm_Usuario extends javax.swing.JFrame {
         tbl_Usuario.getColumnModel().getColumn(2).setPreferredWidth(300);
         tbl_Usuario.getColumnModel().getColumn(3).setResizable(false);
         tbl_Usuario.getColumnModel().getColumn(4).setPreferredWidth(200);
-        //Remove as Colunas da vis√£o
+        //Remove as Colunas da vis„o
         tbl_Usuario.getColumnModel().removeColumn( tbl_Usuario.getColumnModel().getColumn(3));//Remove a Coluna Senha
         tbl_Usuario.getColumnModel().removeColumn( tbl_Usuario.getColumnModel().getColumn(0));//Remove a Coluna Codigo
 
@@ -149,11 +149,11 @@ public class frm_Usuario extends javax.swing.JFrame {
 
         lbl_Nome.setText("Nome");
 
-        pnl_tipobusca.setBorder(javax.swing.BorderFactory.createTitledBorder("Op√ß√µes de Busca Avan√ßada"));
+        pnl_tipobusca.setBorder(javax.swing.BorderFactory.createTitledBorder("OpÁıes de Busca AvanÁada"));
 
         btnGrp_Busca.add(rbtn_antes);
         rbtn_antes.setSelected(true);
-        rbtn_antes.setText("Come√ßo");
+        rbtn_antes.setText("ComeÁo");
 
         btnGrp_Busca.add(rbtn_qualquerparte);
         rbtn_qualquerparte.setText("Qualquer parte");
@@ -252,7 +252,7 @@ public class frm_Usuario extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tab_Usuario.addTab("Consulta", null, pnl_Consulta, "Consulta Informa√ß√µes do usu√°rio");
+        tab_Usuario.addTab("Consulta", null, pnl_Consulta, "Consulta InformaÁıes do usu·rio");
 
         lbl_Senha.setText("Senha");
 
@@ -262,7 +262,7 @@ public class frm_Usuario extends javax.swing.JFrame {
 
         lbl_Login.setText("Login");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Perfil do Usu√°rio"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Perfil do Usu·rio"));
 
         btnGrp_TipoUsuario.add(ckb_Administrador);
         ckb_Administrador.setText("Administrador");
@@ -304,7 +304,7 @@ public class frm_Usuario extends javax.swing.JFrame {
             }
         });
 
-        lbl_Codigo.setText("C√≥digo");
+        lbl_Codigo.setText("CÛdigo");
 
         javax.swing.GroupLayout pnl_CadastroLayout = new javax.swing.GroupLayout(pnl_Cadastro);
         pnl_Cadastro.setLayout(pnl_CadastroLayout);
@@ -353,7 +353,7 @@ public class frm_Usuario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tab_Usuario.addTab("Cadastro", null, pnl_Cadastro, "Cadastro, Altera√ß√£o e Exclu√£o de Usu√°rios");
+        tab_Usuario.addTab("Cadastro", null, pnl_Cadastro, "Cadastro, AlteraÁ„o e Exclu„o de Usu·rios");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -417,7 +417,7 @@ public class frm_Usuario extends javax.swing.JFrame {
         txt_codigo.setText(tbl_Usuario.getModel().getValueAt(tbl_Usuario.getSelectedRow(), 0).toString());
         txt_login.setText(tbl_Usuario.getModel().getValueAt(tbl_Usuario.getSelectedRow(), 1).toString());
         pwd_Senha.setText(tbl_Usuario.getModel().getValueAt(tbl_Usuario.getSelectedRow(), 3).toString());
-
+        
         tab_Usuario.setSelectedIndex(1);
     }//GEN-LAST:event_mnitem_alterarActionPerformed
 
