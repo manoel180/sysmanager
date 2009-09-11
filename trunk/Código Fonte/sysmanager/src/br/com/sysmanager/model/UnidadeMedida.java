@@ -1,5 +1,5 @@
 package br.com.sysmanager.model;
-// Generated 31/08/2009 22:11:06 by Hibernate Tools 3.2.1.GA
+// Generated 03/09/2009 15:09:26 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -11,32 +11,36 @@ import java.util.Set;
 public class UnidadeMedida  implements java.io.Serializable {
 
 
-     private int codigo;
+     private Integer codigo;
      private String descricao;
      private String sigla;
-     private Integer valor;
+     private int quantidadeUnidade;
      private Set produtos = new HashSet(0);
 
     public UnidadeMedida() {
     }
 
 	
-    public UnidadeMedida(int codigo) {
-        this.codigo = codigo;
+    public UnidadeMedida(String descricao, String sigla, int quantidadeUnidade) {
+        this.descricao = descricao;
+        this.sigla = sigla;
+        this.quantidadeUnidade = quantidadeUnidade;
     }
-    public UnidadeMedida(int codigo, String descricao, String sigla, Integer valor, Set produtos) {
-       this.codigo = codigo;
+    public UnidadeMedida(String descricao, String sigla, int quantidadeUnidade, Set produtos) {
        this.descricao = descricao;
        this.sigla = sigla;
-       this.valor = valor;
+       this.quantidadeUnidade = quantidadeUnidade;
        this.produtos = produtos;
     }
-   
-    public int getCodigo() {
+
+     public String toString(){
+        return this.descricao;
+    }
+    public Integer getCodigo() {
         return this.codigo;
     }
     
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
     public String getDescricao() {
@@ -53,12 +57,12 @@ public class UnidadeMedida  implements java.io.Serializable {
     public void setSigla(String sigla) {
         this.sigla = sigla;
     }
-    public Integer getValor() {
-        return this.valor;
+    public int getQuantidadeUnidade() {
+        return this.quantidadeUnidade;
     }
     
-    public void setValor(Integer valor) {
-        this.valor = valor;
+    public void setQuantidadeUnidade(int quantidadeUnidade) {
+        this.quantidadeUnidade = quantidadeUnidade;
     }
     public Set getProdutos() {
         return this.produtos;
