@@ -15,14 +15,14 @@ package br.com.sysmanager.view;
  *
  * @author manoel.neto
  */
-public class Frame_Sobre extends javax.swing.JDialog {
+public class Sobre_Aplicacao extends javax.swing.JDialog {
     /** A return status code - returned if Cancel button has been pressed */
     public static final int RET_CANCEL = 0;
     /** A return status code - returned if OK button has been pressed */
     public static final int RET_OK = 1;
 
     /** Creates new form Frame_Sobre */
-    public Frame_Sobre(java.awt.Frame parent, boolean modal) {
+    public Sobre_Aplicacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -47,6 +47,7 @@ public class Frame_Sobre extends javax.swing.JDialog {
         lbl_logo = new org.jdesktop.swingx.JXLabel();
 
         setTitle("Sobre  o SysManager");
+        setModalityType(null);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
@@ -130,24 +131,7 @@ public class Frame_Sobre extends javax.swing.JDialog {
         setVisible(false);
         dispose();
     }
-
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Frame_Sobre dialog = new Frame_Sobre(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private org.jdesktop.swingx.JXLabel jXLabel2;
