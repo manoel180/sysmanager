@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/08/2009 22:11:07 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 03/09/2009 15:09:55 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
   <class catalog="sysmanager" name="br.com.sysmanager.model.Produto" table="produto">
-    <composite-id class="br.com.sysmanager.model.ProdutoId" name="id">
-      <key-property name="codigo" type="int">
-        <column name="codigo"/>
-      </key-property>
-      <key-property name="gruposCodigo" type="int">
-        <column name="Grupos_codigo"/>
-      </key-property>
-    </composite-id>
-    <many-to-one class="br.com.sysmanager.model.UnidadeMedida" fetch="select" name="unidadeMedida">
-      <column name="unidade_medida_codigo" not-null="true"/>
+    <id name="codigo" type="java.lang.Integer">
+      <column name="codigo"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="br.com.sysmanager.model.GrupoProduto" fetch="join" lazy="false" name="grupoProduto">
+      <column name="grupo_produto_codigo" not-null="true"/>
     </many-to-one>
-    <many-to-one class="br.com.sysmanager.model.Grupos" fetch="select" insert="false" name="grupos" update="false">
-      <column name="Grupos_codigo" not-null="true"/>
+    <many-to-one class="br.com.sysmanager.model.UnidadeMedida" fetch="join" lazy="false" name="unidadeMedida">
+      <column name="unidade_medida_codigo" not-null="true"/>
     </many-to-one>
     <property name="descricao" type="string">
       <column length="100" name="descricao" not-null="true"/>
@@ -23,14 +19,20 @@
     <property name="quantidadeEstoque" type="big_decimal">
       <column name="quantidade_estoque" not-null="true" precision="8"/>
     </property>
-    <property name="precoAtacado" type="big_decimal">
-      <column name="preco_atacado" precision="8"/>
-    </property>
-    <property name="precoVarejo" type="big_decimal">
-      <column name="preco_varejo" precision="8"/>
-    </property>
     <property name="quantidadeMinimo" type="big_decimal">
-      <column name="quantidade_minimo" precision="8"/>
+      <column name="quantidade_minimo" not-null="true" precision="8"/>
     </property>
+    <property name="precoVenda" type="big_decimal">
+      <column name="preco_venda" not-null="true" precision="8"/>
+    </property>
+    <property name="precoCompra" type="big_decimal">
+      <column name="preco_compra" not-null="true" precision="8"/>
+    </property>
+    <set inverse="true" name="kitsProdutoses">
+      <key>
+        <column name="produto_codigo" not-null="true"/>
+      </key>
+      <one-to-many class="br.com.sysmanager.model.KitsProdutos"/>
+    </set>
   </class>
 </hibernate-mapping>

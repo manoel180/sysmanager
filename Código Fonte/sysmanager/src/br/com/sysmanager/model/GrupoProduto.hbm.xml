@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/08/2009 22:11:07 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 03/09/2009 15:09:55 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-  <class catalog="sysmanager" name="br.com.sysmanager.model.Grupos" table="grupos">
+  <class catalog="sysmanager" name="br.com.sysmanager.model.GrupoProduto" table="grupo_produto">
     <id name="codigo" type="java.lang.Integer">
       <column name="codigo"/>
       <generator class="identity"/>
@@ -12,7 +12,7 @@
     </property>
     <set inverse="true" name="produtos">
       <key>
-        <column name="Grupos_codigo" not-null="true"/>
+        <column name="grupo_produto_codigo" not-null="true"/>
       </key>
       <one-to-many class="br.com.sysmanager.model.Produto"/>
     </set>

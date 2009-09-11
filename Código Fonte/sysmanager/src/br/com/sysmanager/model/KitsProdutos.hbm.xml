@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/09/2009 15:09:55 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="sysmanager" name="br.com.sysmanager.model.KitsProdutos" table="kits_produtos">
+    <composite-id class="br.com.sysmanager.model.KitsProdutosId" name="id">
+      <key-property name="produtoCodigo" type="int">
+        <column name="produto_codigo"/>
+      </key-property>
+      <key-property name="kitCodigo" type="int">
+        <column name="kit_codigo"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="br.com.sysmanager.model.Produto" fetch="join" insert="false" lazy="false" name="produto" update="false">
+      <column name="produto_codigo" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="br.com.sysmanager.model.Kit" fetch="join" insert="false" lazy="false" name="kits" update="false">
+      <column name="kit_codigo" not-null="true"/>
+    </many-to-one>
+    <property name="quantidadeProduto" type="big_decimal">
+      <column name="quantidade_produto" precision="8"/>
+    </property>
+  </class>
+</hibernate-mapping>
