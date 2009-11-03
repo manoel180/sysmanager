@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/10/2009 02:29:21 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="sysmanager" name="br.com.sysmanager.model.Kit" table="kit">
+    <id name="codigo" type="java.lang.Integer">
+      <column name="codigo"/>
+      <generator class="identity"/>
+    </id>
+    <property name="nome" type="string">
+      <column length="60" name="nome" not-null="true"/>
+    </property>
+    <property name="preco" type="big_decimal">
+      <column name="preco" not-null="true" precision="10"/>
+    </property>
+    <set inverse="true" name="kitsProdutoses">
+      <key>
+        <column name="kit_codigo" not-null="true"/>
+      </key>
+      <one-to-many class="br.com.sysmanager.model.KitsProdutos"/>
+    </set>
+  </class>
+</hibernate-mapping>

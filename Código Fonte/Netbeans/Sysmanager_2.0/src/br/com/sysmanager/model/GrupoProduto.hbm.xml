@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/10/2009 21:13:07 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="sysmanager" name="br.com.sysmanager.model.GrupoProduto" table="grupo_produto">
+    <id name="codigo" type="java.lang.Integer">
+      <column name="codigo"/>
+      <generator class="identity"/>
+    </id>
+    <property name="descricao" type="string">
+      <column length="50" name="descricao" not-null="true" unique="true"/>
+    </property>
+    <set inverse="true" name="produtos">
+      <key>
+        <column name="grupo_produto_codigo" not-null="true"/>
+      </key>
+      <one-to-many class="br.com.sysmanager.model.Produto"/>
+    </set>
+  </class>
+</hibernate-mapping>
