@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/10/2009 13:18:29 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="sysmanager" name="br.com.sysmanager.model.FornecedoresProdutos" table="fornecedores_produtos">
+    <composite-id class="br.com.sysmanager.model.FornecedoresProdutosId" name="id">
+      <key-property name="fornecedorCodigo" type="int">
+        <column name="fornecedor_codigo"/>
+      </key-property>
+      <key-property name="produtoCodigo" type="int">
+        <column name="produto_codigo"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="br.com.sysmanager.model.Produto" fetch="join" insert="false" lazy="false" name="produto" update="false">
+      <column name="produto_codigo" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="br.com.sysmanager.model.Fornecedor" fetch="join" insert="false" lazy="false" name="fornecedor" update="false">
+      <column name="fornecedor_codigo" not-null="true"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>
