@@ -1,0 +1,1 @@
+Sistema para auxiliar nas vendas, controle de estoque e financeiros de empresas comerciais
